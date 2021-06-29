@@ -86,11 +86,21 @@
     })
 
     socket.on('chat message', (msg) => {
-      var item = document.createElement('li')
+      let item = document.createElement('li')
       item.textContent = msg
       messages.appendChild(item)
       window.scrollTo(0, document.body.scrollHeight)
     })
+
+    socket.on('saiu', () => {
+      console.log('usuario saiu')
+
+      let item = document.createElement('li')
+      item.textContent = 'usuario saiu'
+      messages.appendChild(item)
+      window.scrollTo(0, document.body.scrollHeight)
+    })
+
   </script>
 </body>
 

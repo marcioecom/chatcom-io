@@ -11,12 +11,15 @@ app.get('/', function (req, res) {
     return res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
     console.log('a user connected ' + socket.id);
-    socket.on('disconnect', function () {
+
+    socket.on('disconnect', () => {
+        io.emit('saiu');
         console.log('user disconnected ' + socket.id);
     });
-    socket.on('chat message', function (msg) {
+
+    socket.on('chat message', (msg) => {
         io.emit('chat message', msg);
         console.log('message: ' + msg);
     });
