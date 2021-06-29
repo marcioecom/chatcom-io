@@ -13,6 +13,7 @@ app.get('/', function (req, res) {
 
 io.on('connection', (socket) => {
     console.log('a user connected ' + socket.id);
+    socket.broadcast.emit('entrou');
 
     socket.on('disconnect', () => {
         io.emit('saiu');

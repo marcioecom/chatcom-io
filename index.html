@@ -101,6 +101,15 @@
       window.scrollTo(0, document.body.scrollHeight)
     })
 
+    socket.on('entrou', () => {
+      console.log('usuario entrou')
+
+      let item = document.createElement('li')
+      item.textContent = 'usuario entrou'
+      messages.appendChild(item)
+      window.scrollTo(0, document.body.scrollHeight)
+    })
+
   </script>
 </body>
 
