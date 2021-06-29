@@ -16,7 +16,7 @@ io.on('connection', (socket) => {
     socket.broadcast.emit('entrou');
 
     socket.on('disconnect', () => {
-        io.emit('saiu');
+        socket.broadcast.emit('saiu');
         console.log('user disconnected ' + socket.id);
     });
 
