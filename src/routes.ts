@@ -1,6 +1,8 @@
 import { Router } from "express"
 import { AuthenticateUserController } from "./controllers/AuthenticateUserController";
 import { CreateUserController } from "./controllers/CreateUserController";
+import { ensureAdmin } from "./middlewares/ensureAdmin";
+import { ensureAuthenticated } from "./middlewares/ensureAuthenticated";
 
 const router = Router()
 
