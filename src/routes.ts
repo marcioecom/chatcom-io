@@ -10,7 +10,7 @@ const createUserController = new CreateUserController()
 const authenticateUserController = new AuthenticateUserController()
 
 router.get('/', function (req, res) {
-  return res.sendFile(__dirname + '/views/index.html');
+  return res.render('views/index.html');
 });
 
 router.post('/users', createUserController.handle)
