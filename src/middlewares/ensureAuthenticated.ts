@@ -13,7 +13,7 @@ export function ensureAuthenticated(
   const authToken = req.headers.authorization
 
   if (!authToken) {
-    return res.status(401).end()
+    return res.redirect('/login')
   }
 
   const token = authToken.split(' ')[1]

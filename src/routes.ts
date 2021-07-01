@@ -9,10 +9,15 @@ const router = Router()
 const createUserController = new CreateUserController()
 const authenticateUserController = new AuthenticateUserController()
 
-router.get('/', function (req, res) {
-  return res.render('views/index.html');
+router.get('/', ensureAuthenticated, (req, res) => {
+  return res.render('views/index');
 });
-
+router.get('/login', (req, res) => {
+  return res.render('views/login')
+})
+router.get('/cadastro', (req, res) => {
+  return res.render('views/register')
+})
 router.post('/users', createUserController.handle)
 router.post('/login', authenticateUserController.handle)
 
