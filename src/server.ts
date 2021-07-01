@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import { server } from './http'
 import './websocket/client'
 const port = process.env.PORT || 3000

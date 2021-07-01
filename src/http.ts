@@ -1,4 +1,5 @@
-import express, { NextFunction, Request, Response } from "express";
+import 'reflect-metadata'
+import express, { NextFunction, Request, Response, urlencoded } from "express";
 import 'express-async-errors'
 import { createServer } from "http";
 import { Server } from "socket.io";
@@ -18,6 +19,7 @@ app.engine('html', require('ejs').renderFile)
 app.set('view engine', 'html')
 
 app.use(express.json())
+app.use(express.urlencoded({ extended: false }))
 
 app.use(router)
 
