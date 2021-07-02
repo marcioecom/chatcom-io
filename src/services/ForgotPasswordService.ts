@@ -1,6 +1,8 @@
 import { getCustomRepository } from "typeorm"
 import { UsersRepository } from "../repositories/UsersRepository"
 import nodemailer from "nodemailer"
+import config from '../config/mail'
+import SMTPTransport from "nodemailer/lib/smtp-transport"
 
 class ForgotPasswordService {
   async execute(email: string) {
@@ -12,14 +14,16 @@ class ForgotPasswordService {
       throw new Error("User not found")
     }
 
-    let transporter = nodemailer.createTransport({
-      host: "smtp.mailtrap.io",
-      port: 2525,
+    const transporter = nodemailer.createTransport({
+      host: config.host,
+      port: config.port,
+      secure: false,
       auth: {
-        user: "2714d6e6b04133",
-        pass: "209fbcf5334b98"
-      }
-    })
+        user: config.user,
+        pass: config.pass
+      },
+      tls: { rejectUnauthorized: false }
+    } as unknown as SMTPTransport.Options)
 
     const message = await transporter.sendMail({
       from: "ChatCom <noreply@example.com>",
