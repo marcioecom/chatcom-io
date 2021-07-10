@@ -10,52 +10,51 @@
 </head>
 
 <body>
-  <ul id="messages"></ul>
+  <div class="container">
+    <!-- <script id="sender-template" type="text/template"> -->
+    <div class="user_right">
+      <div class="user_sender">
+        <span class="name">{{name}}</span>
+        <span class="sender message">
+          {{message}}Eae
+          <!-- <label class="date">{{date}}</label> -->
+        </span>
+      </div>
+    </div>
+    <!-- </script> -->
+
+    <!-- <script id="receiver-template" type="text/template"> -->
+    <div class="user_left">
+      <div class="user_receiver">
+        <span class="name">{{name}}</span>
+        <span class="receiver message">
+          {{message}}ola galera
+        </span>
+        <!-- <label class="date">{{date}}</label> -->
+      </div>
+    </div>
+
+    <!-- </script> -->
+
+    <div id="messages" class="chat__messages"></div>
+
+    <div class="message_send">
+      <input type="text" placeholder="Digite sua mensagem aqui" id="message_user" />
+      <div class="send_message_button" id="send_message_button">
+        <img src="/images/send.png" />
+      </div>
+    </div>
+  </div>
+
+
+  <!-- <ul id="messages"></ul>
   <form id="form">
     <input id="input" autocomplete="off" /><button>Enviar</button>
-  </form>
+  </form> -->
   <script src="/socket.io/socket.io.js"></script>
-  <script>
-    var socket = io();
-
-    var messages = document.getElementById('messages')
-    var form = document.getElementById('form')
-    var input = document.getElementById('input')
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault()
-      if (input.value) {
-        socket.emit('chat message', input.value)
-        input.value = ''
-      }
-    })
-
-    socket.on('chat message', (msg) => {
-      let item = document.createElement('li')
-      item.textContent = msg
-      messages.appendChild(item)
-      window.scrollTo(0, document.body.scrollHeight)
-    })
-
-    socket.on('saiu', () => {
-      console.log('usuario saiu')
-
-      let item = document.createElement('li')
-      item.textContent = 'usuario saiu'
-      messages.appendChild(item)
-      window.scrollTo(0, document.body.scrollHeight)
-    })
-
-    socket.on('entrou', () => {
-      console.log('usuario entrou')
-
-      let item = document.createElement('li')
-      item.textContent = 'usuario entrou'
-      messages.appendChild(item)
-      window.scrollTo(0, document.body.scrollHeight)
-    })
-
-  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.10.4/dayjs.min.js"></script>
+  <script src="https://unpkg.com/mustache@latest"></script>
+  <script src="/js/chat.js"></script>
 </body>
 
 </html>

@@ -19,7 +19,7 @@ router.post('/reset-password', forgotUserPasswordController.handle)
 
 router.put('/users/:id', resetUserPasswordController.handle)
 
-router.get('/', ensureAuthenticated, (req, res) => {
+router.get('/chat', (req, res) => {
   return res.render('views/index');
 });
 
