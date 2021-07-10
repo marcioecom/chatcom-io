@@ -1,20 +1,42 @@
 const socket = io();
 
-var messages = document.getElementById('messages')
-var form = document.getElementById('form')
-var input = document.getElementById('input')
+const sendMessage = document.querySelector("#send_message_button")
+const screen = document.querySelector(".container")
+const text = document.getElementById("message_user");
 
-form.addEventListener('submit', (e) => {
-  e.preventDefault()
-  if (input.value) {
-    socket.emit('chat message', input.value)
-    input.value = ''
-  }
-})
+function createMessage(msg) {
+  const name = 'Márcio'
+
+  let messageItem = document.createElement('div')
+  messageItem.innerHTML += `<div class="user_right">
+    <div class="user_sender">
+      <span class="name">${name}</span>
+      <span class="sender message">
+        ${msg}
+        <!-- <label class="date">{{date}}</label> -->
+      </span>
+    </div>
+  </div>`
+
+  screen.appendChild(messageItem)
+}
+
+sendMessage.addEventListener("click", (event) => {
+  socket.emit('chat message', text.value)
+  text.value = ''
+});
 
 socket.on('chat message', (msg) => {
+  createMessage(msg)
+
+  window.scrollTo(0, document.body.scrollHeight)
+})
+
+socket.on('entrou', () => {
+  console.log('usuario entrou')
+
   let item = document.createElement('li')
-  item.textContent = msg
+  item.textContent = 'usuario entrou'
   messages.appendChild(item)
   window.scrollTo(0, document.body.scrollHeight)
 })
@@ -28,32 +50,23 @@ socket.on('saiu', () => {
   window.scrollTo(0, document.body.scrollHeight)
 })
 
-socket.on('entrou', () => {
-  console.log('usuario entrou')
+// socket.on("client_list_all_messages", messages => {
 
-  let item = document.createElement('li')
-  item.textContent = 'usuario entrou'
-  messages.appendChild(item)
-  window.scrollTo(0, document.body.scrollHeight)
-})
+//   var template_sender = document.getElementById('sender-template').innerHTML
+//   var template_receiver = document.getElementById('receiver-template').innerHTML
 
-socket.on("client_list_all_messages", messages => {
+//   messages.forEach(message => {
+//     const rendered = Mustache.render(template_sender, {
+//       message: message.text,
+//       email
+//     })
 
-  var template_sender = document.getElementById('sender-template').innerHTML
-  var template_receiver = document.getElementById('receiver-template').innerHTML
+//     // document.getElementById('messages').innerHTML += rendered
+//     // const rendered = Mustache.render(template_receiver, {
+//     //   message_admin: message.text
+//     // })
 
-  messages.forEach(message => {
-    const rendered = Mustache.render(template_sender, {
-      message: message.text,
-      email
-    })
+//     document.getElementById('messages').innerHTML += rendered
+//   });
 
-    // document.getElementById('messages').innerHTML += rendered
-    // const rendered = Mustache.render(template_receiver, {
-    //   message_admin: message.text
-    // })
-
-    document.getElementById('messages').innerHTML += rendered
-  });
-
-})
+// })
