@@ -1,12 +1,12 @@
 import { getCustomRepository } from "typeorm"
-import { UsersRepository } from "../repositories/UsersRepository"
-import { SendMailService } from "./SendMailService"
+import { UsersRepository } from "../../repositories/UsersRepository"
+import { SendMailUseCase } from "../sendMail/SendMailUseCase"
 import { resolve } from "path"
 
-class ForgotUserPasswordService {
+class ForgotUserPasswordUseCase {
   async execute(email: string) {
     const usersRepository = getCustomRepository(UsersRepository)
-    const sendMailService = new SendMailService()
+    const sendMailService = new SendMailUseCase()
 
     const user = await usersRepository.findOne({ email })
 
@@ -27,4 +27,4 @@ class ForgotUserPasswordService {
   }
 }
 
-export { ForgotUserPasswordService }
+export { ForgotUserPasswordUseCase }

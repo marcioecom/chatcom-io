@@ -1,7 +1,7 @@
 import { compare } from "bcryptjs"
 import { sign } from "jsonwebtoken"
 import { getCustomRepository } from "typeorm"
-import { UsersRepository } from "../repositories/UsersRepository"
+import { UsersRepository } from "../../repositories/UsersRepository"
 
 
 interface IAuthenticateRequest {
@@ -9,7 +9,7 @@ interface IAuthenticateRequest {
   password: string;
 }
 
-class AuthenticateUserService {
+class AuthenticateUserUseCase {
   async execute({ email, password }: IAuthenticateRequest) {
     const usersRepository = getCustomRepository(UsersRepository)
 
@@ -38,4 +38,4 @@ class AuthenticateUserService {
   }
 }
 
-export { AuthenticateUserService }
+export { AuthenticateUserUseCase }

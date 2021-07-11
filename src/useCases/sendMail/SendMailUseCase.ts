@@ -1,10 +1,10 @@
 import nodemailer, { Transporter } from "nodemailer"
-import config from '../config/mail'
+import config from '../../config/mail'
 import SMTPTransport from "nodemailer/lib/smtp-transport"
 import handlebars from "handlebars"
 import fs from "fs"
 
-class SendMailService {
+class SendMailUseCase {
   private client: Transporter
   constructor() {
     const transporter = nodemailer.createTransport({
@@ -43,4 +43,4 @@ class SendMailService {
   }
 }
 
-export { SendMailService }
+export { SendMailUseCase }

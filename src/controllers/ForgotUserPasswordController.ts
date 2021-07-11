@@ -1,11 +1,11 @@
 import { Request, Response } from "express"
-import { ForgotUserPasswordService } from "../services/ForgotUserPasswordService"
+import { ForgotUserPasswordUseCase } from "../useCases/forgotPassword/ForgotUserPasswordUseCase"
 
 class ForgotUserPasswordController {
   async handle(req: Request, res: Response) {
     const { email } = req.body
 
-    const forgotPasswordService = new ForgotUserPasswordService()
+    const forgotPasswordService = new ForgotUserPasswordUseCase()
 
     forgotPasswordService.execute(email)
 

@@ -1,9 +1,9 @@
 import { hash } from "bcryptjs"
 import { getCustomRepository } from "typeorm"
-import { UsersRepository } from "../repositories/UsersRepository"
+import { UsersRepository } from "../../repositories/UsersRepository"
 
 
-class ResetUserPasswordService {
+class ResetUserPasswordUseCase {
   async execute(id: string, newPassword: string) {
     const usersRepository = getCustomRepository(UsersRepository)
 
@@ -23,4 +23,4 @@ class ResetUserPasswordService {
   }
 }
 
-export { ResetUserPasswordService }
+export { ResetUserPasswordUseCase }
