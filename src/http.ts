@@ -1,13 +1,16 @@
 import 'reflect-metadata'
-import express, { NextFunction, Request, Response, urlencoded } from "express";
+import express, { NextFunction, Request, Response } from "express";
 import 'express-async-errors'
 import { createServer } from "http";
 import { Server } from "socket.io";
+
 import path from "path"
+import cors from 'cors'
 
 import "./database"
 import { router } from "./routes";
 
+const origin = process.env.ORIGIN
 const app = express();
 
 const server = createServer(app); // Criando protocolo http
@@ -18,6 +21,7 @@ app.set('views', path.join(__dirname, '..', 'public'))
 app.engine('html', require('ejs').renderFile)
 app.set('view engine', 'html')
 
+app.use(cors({ origin: origin }))
 app.use(express.json())
 app.use(express.urlencoded({ extended: false }))
 

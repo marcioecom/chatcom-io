@@ -13,16 +13,16 @@
 
 <body>
   <div class="container">
-    <form action="/users" method="POST">
+    <form action="/login" method="POST" id="form">
       <h1>Entrar na conta</h1>
       <p>Por favor, preecha esse formulário para entrar na sua conta.</p>
       <hr>
 
       <label for="email"><b>Email</b></label>
-      <input type="text" placeholder="example@mail.com" name="email" required>
+      <input type="text" placeholder="example@mail.com" id="email" name="email" required>
 
       <label for="psw"><b>Senha</b></label>
-      <input type="password" placeholder="Coloque a senha" name="psw" required>
+      <input type="password" placeholder="Coloque a senha" id="psw" name="psw" required>
 
       <button type="submit" class="signupbtn">Entrar</button>
       <div class="footer">
@@ -31,6 +31,9 @@
       </div>
     </form>
   </div>
+
+  <script src="/js/login.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </body>
 
 </html>
