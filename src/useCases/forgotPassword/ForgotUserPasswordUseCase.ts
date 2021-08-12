@@ -20,7 +20,7 @@ class ForgotUserPasswordUseCase {
       link: process.env.URL_MAIL
     };
 
-    const emailPath = resolve(__dirname, "..", "..", "public", "views", "emails", "reset-password.hbs")
+    const emailPath = resolve(__dirname, "..", "..", "..", "public", "views", "emails", "reset-password.hbs")
 
     sendMailService.execute(email, emailPath, variables)
 
